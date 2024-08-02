@@ -2,10 +2,11 @@
 A CLI tool that generates CircuitPython HID scripts from mnemonics for Raspberry Pi Pico Series.
 
 # Key Features
-- It takes txt file for input mnemonics.
+- It takes `.txt` file for input mnemonics.
 - It convert and save into CircuitPython HID Scripts in a single click.
-- It save by default in the `code.py` file.
-- It save with custom names.
+- It save `.py` files in two ways :
+  1. `code.py` file.
+  2. With custom file name.
 
 # OS Support
 - Windows 10
@@ -44,7 +45,7 @@ There are 4 parameters :
 1. *-i* - Input Mnemonic Text File.
 2. *-c* - Convert the mnemonics into circuitpython HID script.
 3. *-s* - Default save with file name `code.py`.
-4. *-ps* - Save with custom name.
+4. *-p* - Save with custom name.
 
 # Supported Boards
 - Raspberry Pi Pico
@@ -54,9 +55,9 @@ There are 4 parameters :
 # Mnemonic Table
 | Mnemonics | Description | Example  |
 |-----------|-------------|----------|
-| HID       | It adds the time and usb_hid libraries in the code.     | Just type HID     |
+| TIME       | It adds the time library in the code.     | Just type TIME     |
 | HWD       | It adds the board and digitalio libraries in the code.  | Just type HWD     |
-| HLIB      | It adds the Keycode, Keyboard and KeyboardLayoutUS libraries in the code.| Just type HLIB|
+| HLIB      | It adds the usb_hid, Keycode, Keyboard and KeyboardLayoutUS libraries in the code.| Just type HID|
 | MOUSE     | It adds the Mouse library in the code.| Just type MOUSE|
 | KYBD		| It create objects for keycode and keyboard layout in the code.| Just type KYBD|
 | MSE       | It create objects for mouse in the code.| Just type MSE|
@@ -64,8 +65,6 @@ There are 4 parameters :
 | LED       | It turns on/off the led in the code.<br>Values are ON and OFF.| LED ON|
 | WAIT      | It add time in the code.<br>Time is in milliseconds.<br>1000 ms = 1 second.| WAIT 1000|
 | TYPE      | It add text want to type in the code.| TYPE Hello World!|
-| SCODE     | It press and release the key(s) immediately.| SCODE A|
-| PCODE     | It press and hold the key(s) and release all key(s).| PCODE S|
 | MOVE      | It moves the mouse pointer according to the values.<br>Values are x-axis, y-axis and scroll.<br> Values may be positive, negative or ZERO.<br>Values in sequence - x-axis, y-axis, scroll.| MOVE 36 -78 0|
 | CLICK     | It clicks the mouse buttons.<br>Values are LEFT, MIDDLE and RIGHT.| CLICK LEFT|
 | PRESS     | It press the mouse buttons and relaese immediately.<br>Values are LEFT, MIDDLE and RIGHT.| PRESS RIGHT|
@@ -90,7 +89,7 @@ The above mnemonic table is in pdf now.
 `CTRL` `SHIFT` `ALT`
 
 # Before...
-Write down your mnemonics and save in it txt file.
+Write down your mnemonics and save in it `.txt` file.
 
 # Install and Run
 1. Download or Clone the Repository.
@@ -105,7 +104,7 @@ python PicoHIDCLI.py -i notepad.txt -c -s
 ## Save with custom name
 
 ```
-python PicoHIDCLI.py -i notepad.txt -c -ps note
+python PicoHIDCLI.py -i notepad.txt -c -p note
 ```
 4. Paste the code in the `code.py` file in the `CIRCUITPY`.
    - It ask for replacing, then click on `Yes`.
@@ -125,26 +124,24 @@ python PicoHIDCLI.py -i notepad.txt -c -ps note
 Mnemonic for Open Notepad and Type
 
 ```
+TIME
 HID
-
-HLIB
 
 KYBD
 
-PCODE GUI R
+GUI R
 WAIT 1000
 TYPE notepad
 WAIT 1000
-SCODE ENTER
+ENTER
 WAIT 1000
-TYPE This is a test for Raspberry Pi Pico script developed by PicoHID Scripter!
+TYPE This is a test for Raspberry Pi Pico script developed by PicoHID CLI!
 ```
 after Convert, the circuit python script of the following mnemonic is :
 
 ```
 import time
 import usb_hid
-
 from adafruit_hid.keycode import Keycode
 from adafruit_hid.keyboard import Keyboard
 from adafruit_hid.keyboard_layout_us import KeyboardLayoutUS
@@ -167,26 +164,24 @@ Just copy this code and paste it in the `code.py` file in the `CIRCUITPY`.
 Mnemonic for Open CMD as Administartor Mode
 
 ```
+TIME
 HID
-
-HLIB
 
 KYBD
 
-SCODE GUI
+GUI
 WAIT 1000
 TYPE cmd
 WAIT 1000
-PCODE CTRL SHIFT ENTER
+CTRL SHIFT ENTER
 WAIT 1200
-PCODE ALT Y
+ALT Y
 ```
 after Convert, the circuit python script of the following mnemonic is :
 
 ```
 import time
 import usb_hid
-
 from adafruit_hid.keycode import Keycode
 from adafruit_hid.keyboard import Keyboard
 from adafruit_hid.keyboard_layout_us import KeyboardLayoutUS
@@ -210,22 +205,20 @@ Just copy this code and paste it in the `code.py` file in the `CIRCUITPY`.
 Mnemonic for Create a folder
 
 ```
+TIME
 HID
-
-HLIB
 
 KYBD
 
-PCODE CTRL SHIFT N
+CTRL SHIFT N
 WAIT 1200
-SCODE ENTER
+ENTER
 ```
 after Convert, the circuit python script of the following mnemonic is :
 
 ```
 import time
 import usb_hid
-
 from adafruit_hid.keycode import Keycode
 from adafruit_hid.keyboard import Keyboard
 from adafruit_hid.keyboard_layout_us import KeyboardLayoutUS
