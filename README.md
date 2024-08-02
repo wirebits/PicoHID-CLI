@@ -57,7 +57,7 @@ There are 4 parameters :
 |-----------|-------------|----------|
 | TIME       | It adds the time library in the code.     | Just type TIME     |
 | HWD       | It adds the board and digitalio libraries in the code.  | Just type HWD     |
-| HLIB      | It adds the usb_hid, Keycode, Keyboard and KeyboardLayoutUS libraries in the code.| Just type HID|
+| HID      | It adds the usb_hid, Keycode, Keyboard and KeyboardLayoutUS libraries in the code.| Just type HID|
 | MOUSE     | It adds the Mouse library in the code.| Just type MOUSE|
 | KYBD		| It create objects for keycode and keyboard layout in the code.| Just type KYBD|
 | MSE       | It create objects for mouse in the code.| Just type MSE|
